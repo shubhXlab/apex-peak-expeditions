@@ -166,9 +166,8 @@ Submit a climber departure reservation directly to the database.
 
 ```
 apex-peak-expeditions/
-├── .github/
-│   └── workflows/
-│       └── ci.yml                     # GitHub Action for PHP syntax & lint validation
+├── ci/
+│   └── github-ci.yml.sample           # GitHub Actions CI workflow template (PHP linting)
 ├── database/
 │   ├── apex_peak_expeditions.sql      # Full database snapshot (10 pages, options, tables)
 │   └── schema.sql                     # Standalone DDL for custom tables & seeds
