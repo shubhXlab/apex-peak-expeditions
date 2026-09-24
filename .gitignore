@@ -1,0 +1,49 @@
+# ==============================================================================
+# APEX PEAK EXPEDITIONS - WORDPRESS GITIGNORE
+# ==============================================================================
+
+# Core configuration secrets
+wp-config.php
+.env
+.env.local
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs and databases
+*.log
+*.sql.gz
+*.sqlite
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# WordPress Runtime Artifacts
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/blogs.dir/
+
+# Node & Composer dependencies
+node_modules/
+vendor/
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

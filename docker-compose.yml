@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.11
+    container_name: apex_mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-apex_root_secret}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-wordpress}
+      MYSQL_USER: ${MYSQL_USER:-apex_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-apex_password}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/apex_peak_expeditions.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - apex_network
+
+  wordpress:
+    image: wordpress:6.7-apache
+    container_name: apex_wordpress
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "${WP_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-wordpress}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-apex_user}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-apex_password}
+      WORDPRESS_TABLE_PREFIX: wp_
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    networks:
+      - apex_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: apex_phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "${PMA_PORT:-8081}:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-apex_root_secret}
+    networks:
+      - apex_network
+
+volumes:
+  db_data:
+
+networks:
+  apex_network:
+    driver: bridge
