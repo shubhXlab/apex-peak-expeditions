@@ -125,7 +125,19 @@ Submit a climber departure reservation directly to the database.
 
 ## 🚀 Quickstart & Installation
 
-### Method 1: Docker Compose (Recommended)
+### Method 1: 1-Click Automated Setup (`setup.bat` — Windows / XAMPP)
+
+1. Download or extract the release archive.
+2. Double-click **`setup.bat`** (or execute via Command Prompt).
+3. The script will automatically:
+   - Detect and auto-start your MySQL and Apache services.
+   - Create the `wordpress` database and import all 10 pages and custom tables.
+   - Deploy files directly to your web server root (`C:\xampp\htdocs\wordpress`).
+   - Configure `wp-config.php` and launch `http://localhost/wordpress/` in your browser.
+
+---
+
+### Method 2: Docker Compose (Cross-Platform)
 
 1. **Clone the repository:**
    ```bash
@@ -149,7 +161,7 @@ Submit a climber departure reservation directly to the database.
 
 ---
 
-### Method 2: Manual Installation (XAMPP / LAMP / LocalWP)
+### Method 3: Manual Installation (XAMPP / LAMP / LocalWP)
 
 1. Clone or copy files into your web root (e.g., `htdocs/wordpress`).
 2. Create a MySQL database named `wordpress`.
@@ -166,6 +178,7 @@ Submit a climber departure reservation directly to the database.
 
 ```
 apex-peak-expeditions/
+├── setup.bat                          # 1-Click automated Windows installer & deployer
 ├── ci/
 │   └── github-ci.yml.sample           # GitHub Actions CI workflow template (PHP linting)
 ├── database/
